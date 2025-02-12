@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Hotels</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #ffffff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        li:hover {
+            transform: scale(1.05);
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .empty-msg {
+            color: #777;
+            font-size: 16px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Favorite Hotels</h2>
+        <ul id="favoriteList"></ul>
+        <a href="../hotell.html" class="back-btn">Back to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            let list = document.getElementById("favoriteList");
+        
+            if (favorites.length === 0) {
+                list.innerHTML = "<p class='empty-msg'>No favorites added yet.</p>";
+                return;
+            }
+        
+            favorites.forEach(hotel => {
+                let li = document.createElement("li");
+                li.innerHTML = `<a href="${hotel.link}">${hotel.name}</a>`;
+                list.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>

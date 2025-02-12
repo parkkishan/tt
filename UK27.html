@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="icon" href="../Images/Travely-logo.png" type="image/icon type">
+    <title>UK27-The Fern</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none !important;
+            box-shadow: none !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+
+
+
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        a:hover {
+            color: #6120b7;
+        }
+
+        header {
+            position: relative;
+            padding: 0 2rem;
+            z-index: 1000;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .logo a {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar .nav ul {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .navbar .menu {
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .navbar .highlight {
+            display: block;
+            margin-left: 0;
+            margin-right: 1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(160deg, #6407c7, rgb(5, 5, 5));
+            color: #fff;
+            padding: 0.6rem 3rem;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: scale 0.2s ease;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .highlight:hover {
+            transform: scale(1.05);
+            color: #ffffff;
+        }
+
+        .highlight:active {
+            transform: scale(0.95);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            height: 0;
+            margin-left: -2em;
+            background: rgba(0, 0, 0, 0.439);
+            backdrop-filter: blur(15px);
+            border-radius: 7px;
+            overflow: hidden;
+            display: none;
+            opacity: 0;
+            transition: height 0.3s ease, opacity 0.3s ease;
+        }
+
+        .dropdown-menu ul {
+            padding: 0;
+        }
+
+        .dropdown-menu li {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown-menu .highlight {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dropdown-menu.open {
+            height: auto;
+            opacity: 1;
+            display: block;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            /* Ensure it spans the height of the image */
+            background: linear-gradient(to bottom, transparent 100px, black 450px),
+                linear-gradient(to top, transparent 100px, black 450px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 40px;
+            z-index: 200;
+            left: 30px;
+            right: 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #f6f6f6;
+            margin-bottom: 15px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .hero-buttons button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .book-now {
+            background-color: #6407c7;
+            color: #ffffff;
+            font-weight: bold;
+            height: 3.5rem;
+        }
+
+        .add-to-favorites {
+            background-color: #4d4d4d67;
+            height: 3.5rem;
+            color: #ffffff;
+        }
+
+        /* Amenities Section */
+        .amenities {
+            padding: 30px 32px;
+            background-color: #000000;
+            margin-top: 20px;
+        }
+
+        .amenities h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .amenities-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .amenity {
+            flex: 1 1 calc(33.333% - 20px);
+            /* Three items per row */
+            background-color: #000000;
+            border-radius: 7px;
+            border: 0.1px solid rgb(67, 66, 66);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .amenity h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .amenity p {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Featured Hotels Section */
+        .view-gallery-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4d4d4d67;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .view-gallery-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Lightbox (Full-Screen Gallery) */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 999;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: 80%;
+            max-height: 70%;
+            border-radius: 10px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Close Button */
+        .lightbox-close {
+            position: absolute;
+            top: 100px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Navigation Buttons */
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        /* Hide Images */
+        .hidden-images {
+            display: none;
+        }
+
+
+
+
+
+        @media (max-width: 992px) {
+            .navbar .nav ul {
+                display: none;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            .navbar .menu {
+                display: flex;
+            }
+
+            .navbar .menu i {
+                display: inline-block;
+            }
+
+            .navbar .highlight {
+                display: none;
+            }
+
+            .dropdown-menu {
+                display: block;
+            }
+
+
+            .dropdown-menu .highlight {
+                display: block;
+                margin-top: 1rem;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .hero-buttons {
+                position: fixed;
+                bottom: 30px;
+                /* Increased to avoid overlapping with gallery button */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                display: flex;
+                justify-content: space-between;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.374), black);
+                padding: 10px;
+                border-radius: 10px;
+                gap: 10px;
+                /* Adds space between buttons */
+            }
+
+            .hero-buttons .book-now {
+                flex: 1;
+                padding: 19px;
+                width: 15rem;
+                font-size: 16px;
+                border-radius: 5px;
+            }
+
+            .hero-buttons .add-to-favorites {
+                width: 60px;
+                /* Adjust as needed */
+                padding: 10px;
+                font-size: 14px;
+                text-align: center;
+            }
+
+            .view-gallery-btn {
+                bottom: 7rem;
+                right: 1.7rem;
+
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+            <img src="../Images/Travely-logo.png" style="height: 4rem ;" alt="">
+            <div class="logo">
+
+                <a href="index.html" style="margin: -3rem;">Travely</a>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="#">Hotels</a></li>
+                    <li><a href="#">Restaurants</a></li>
+                    <li><a href="Bio-web - Copy/index.html">About-Us</a></li>
+                </ul>
+                <div class="menu"><i class="fa-solid fa-bars"></i></div>
+            </div>
+            <a href="#" class="highlight">Sign-in</a>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="#">Hotels</a></li>
+                    <li><a href="#">Restaurants</a></li>
+                    <li><a href="Bio-web - Copy/index.html">About-Us</a></li>
+                    <li><a href="#" class="highlight">Sign-in</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <div class="hero">
+        <img src="../Images/uk27.jpg" alt="Luxury Hotel">
+        <div class="hero-content">
+            <h1>UK 27 - The Fern</h1>
+            <p>4.3 • 5-Star • Belgaum</p>
+            <div class="hero-buttons">
+                <a
+                    href="https://www.google.com/travel/search?q=UK27%20The%20Fern%20%20%20An%20Ecotel%20Hotel%2C%20Belagavi&qs=OAA&ts=CAEaGhIYEhIKBwjpDxACGBYSBwjpDxACGBcyAggCKgcKBToDSU5S&ictx=3&ap=KigKEgkT_5fqLb8vQBHU3AClyaBSQBISCc8lgiW0wC9AEdTcgALsoFJAMAC6AQhvdmVydmlldw">
+                    <button class="book-now">Book Now</button>
+                </a>
+                <button class="add-to-favorites"
+                    onclick="addToFavorites('UK 27 - The Fern', '4.3 • 5-Star • Belgaum', '../Images/uk27.jpg', 'uk27.html')">♡</button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Amenities Section -->
+    <div class="amenities">
+        <h2>Amenities & Services</h2>
+        <div class="amenities-list">
+            <div class="amenity">
+                <h3>Free Wi-Fi</h3>
+                <p>Enjoy high-speed internet access throughout the property.</p>
+            </div>
+            <div class="amenity">
+                <h3>Swimming Pool</h3>
+                <p>Relax in our outdoor pool with a stunning view.</p>
+            </div>
+            <div class="amenity">
+                <h3>Spa & Wellness</h3>
+                <p>Indulge in relaxing spa treatments and massages.</p>
+            </div>
+            <div class="amenity">
+                <h3>Fitness Center</h3>
+                <p>Stay active with our state-of-the-art gym facilities.</p>
+            </div>
+            <div class="amenity">
+                <h3>Restaurant</h3>
+                <p>Savor delicious cuisines from our in-house chefs.</p>
+            </div>
+            <div class="amenity">
+                <h3>Free Parking</h3>
+                <p>Secure and convenient parking for all guests.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Lightbox (Hidden by default) -->
+
+    <button class="view-gallery-btn">📷</button>
+
+    <!-- Lightbox (Hidden by default) -->
+    <div class="lightbox">
+        <span class="lightbox-close" onclick="closeGallery()">&times;</span>
+        <span class="lightbox-prev" onclick="prevImage()">&#10094;</span>
+        <img id="lightbox-img" src="" alt="Expanded Image">
+        <span class="lightbox-next" onclick="nextImage()">&#10095;</span>
+    </div>
+</body>
+<script>
+
+
+
+    // Nav Bar
+    const toggleBtn = document.querySelector('.menu');
+    const toggleBtnIcon = toggleBtn.querySelector('i');
+    const dropDownMenu = document.querySelector('.dropdown-menu');
+
+    toggleBtn.onclick = function () {
+        dropDownMenu.classList.toggle('open');
+        const isOpen = dropDownMenu.classList.contains('open');
+        toggleBtnIcon.classList.toggle('fa-bars', !isOpen);
+        toggleBtnIcon.classList.toggle('fa-xmark', isOpen);
+    };
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const cards = document.querySelectorAll(".card");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        cards.forEach((card) => observer.observe(card));
+    });
+
+    let currentImageIndex = 0;
+    const imageSources = [
+        "../Images/uk27.jpg",
+        "../Images/uk272.jpg",
+        "../Images/uk273.jpg",
+        "../Images/uk274.jpg",
+        "../Images/uk276.jpg"
+    ];
+
+    const viewGalleryBtn = document.querySelector(".view-gallery-btn");
+    const lightbox = document.querySelector(".lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    // Open Gallery on Button Click
+    viewGalleryBtn.addEventListener("click", () => {
+        currentImageIndex = 0;
+        lightboxImg.src = imageSources[currentImageIndex];
+        lightbox.classList.add("active");
+    });
+
+    // Close Gallery
+    function closeGallery() {
+        lightbox.classList.remove("active");
+    }
+
+    // Navigate Previous
+    function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
+        lightboxImg.src = imageSources[currentImageIndex];
+    }
+
+    // Navigate Next
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % imageSources.length;
+        lightboxImg.src = imageSources[currentImageIndex];
+    }
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+            closeGallery();
+        }
+    });
+
+
+
+
+
+
+
+
+
+    function addToFavorites(hotelName, hotelPage) {
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        // Avoid duplicate entries
+        if (!favorites.some(hotel => hotel.name === hotelName)) {
+            favorites.push({ name: hotelName, link: hotelPage });
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+        }
+
+        // Redirect to favorites page
+        window.location.href = "favorite.html";
+    }
+</script>
+</script>
+
+</html>

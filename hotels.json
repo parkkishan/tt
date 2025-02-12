@@ -1,0 +1,5 @@
+[
+    { "name": "Hotel Taj", "location": "Mumbai", "rating": "5 Stars" },
+    { "name": "The Oberoi", "location": "Delhi", "rating": "4.5 Stars" },
+    { "name": "ITC Grand", "location": "Bangalore", "rating": "4 Stars" }
+]
